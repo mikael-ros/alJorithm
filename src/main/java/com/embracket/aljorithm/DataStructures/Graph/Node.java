@@ -1,4 +1,4 @@
-package com.embracket.aljorithm.Graph;
+package com.embracket.aljorithm.DataStructures.Graph;
 
 import java.util.Objects;
 
@@ -29,6 +29,6 @@ public class Node<T> {
 
     @Override
     public String toString() {
-        return content.toString();
+        return "(" + content.toString() + ")";
     }
 }

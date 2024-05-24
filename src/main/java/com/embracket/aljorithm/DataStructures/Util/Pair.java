@@ -1,4 +1,4 @@
-package com.embracket.aljorithm.Util;
+package com.embracket.aljorithm.DataStructures.Util;
 
 public class Pair<T> {
     private final T first;

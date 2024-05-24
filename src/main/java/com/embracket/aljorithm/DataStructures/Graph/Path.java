@@ -1,4 +1,4 @@
-package com.embracket.aljorithm.Graph;
+package com.embracket.aljorithm.DataStructures.Graph;
 
 import java.util.LinkedList;
 

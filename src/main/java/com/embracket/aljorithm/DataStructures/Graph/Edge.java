@@ -1,6 +1,6 @@
-package com.embracket.aljorithm.Graph;
+package com.embracket.aljorithm.DataStructures.Graph;
 
-import com.embracket.aljorithm.Util.Pair;
+import com.embracket.aljorithm.DataStructures.Util.Pair;
 
 import java.util.Objects;
 
@@ -14,6 +14,21 @@ public class Edge<T> extends Pair<Node<T>> {
 
     public Edge(Node<T> first, Node<T> second, boolean directed){
         super(first,second);
+        this.directed = directed;
+    }
+
+    /**
+     * Shorthand constructor, that makes the nodes itself
+     * @param first Content of first node
+     * @param second Content of second node
+     */
+    public Edge(T first, T second){
+        super(new Node<>(first), new Node<>(second));
+        this.directed = false;
+    }
+
+    public Edge(T first, T second, boolean directed){
+        super(new Node<>(first), new Node<>(second));
         this.directed = directed;
     }
 
