@@ -28,6 +28,13 @@ public class EdgeTests {
     }
 
     @Test
+    @DisplayName("Adjacent end works")
+    void otherEndWorks(){
+        assertEquals(node1, edge1.otherEnd(node2));
+        assertEquals(node2, edge1.otherEnd(node1));
+    }
+
+    @Test
     @DisplayName("Shorthand constructors work")
     void shorthandEdgeWorks(){
         Edge<String> shortHandEdge1 = new Edge(element, element2);

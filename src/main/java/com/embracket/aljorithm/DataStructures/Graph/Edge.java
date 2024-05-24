@@ -40,6 +40,10 @@ public class Edge<T> extends Pair<Node<T>> {
         return snd();
     }
 
+    public Node<T> otherEnd(Node<T> oneEnd){
+        return oneEnd.equals(from()) ? to() : from();
+    }
+
     public boolean isDirected() {
         return directed;
     }
