@@ -20,17 +20,24 @@ public interface Graph<T> {
 
     /**
      * Whether this graph contains a specified node
-     * @param node The node queried
+     * @param query The node queried
      * @return Whether it is in the graph
      */
-    boolean containsNode(Node<T> node);
+    boolean containsNode(Node<T> query);
 
     /**
      * Whether this graph contains a specified edge
-     * @param edge The edge queried
+     * @param query The edge queried
      * @return Whether it is in the graph
      */
-    boolean containsEdge(Edge<T> edge);
+    boolean containsEdge(Edge<T> query);
+
+    /**
+     * A general contains. Will, if object is edge or node, run the containsEdge or containsNode method.
+     * @param object The object queried
+     * @return Returns whether object is in some way in graph. False if object isn't node or edge.
+     */
+    boolean contains(Object object);
 
     Set<Edge<T>> getEdges();
     Set<Node<T>> getNodes();
