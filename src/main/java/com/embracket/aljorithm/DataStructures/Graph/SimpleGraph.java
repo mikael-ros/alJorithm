@@ -6,17 +6,17 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A simple graph, using an adjacency list.
+ * A simple graph, using an adjacency list. Can hold edges, which can be of any type.
  * @param <T> The type of nodes and edges contained.
  */
-public class SimpleGraph<T> implements Graph<T>{
+public class SimpleGraph<T> implements AbstractGraph<T> {
     private final boolean directed;
     private final Set<Edge<T>> edges;
     private final Set<Node<T>> nodes;
     private final Map<Node<T>, Set<Edge<T>>> adjacencyList;
 
     public SimpleGraph(Set<Edge<T>> edges){
-        this.directed = edges.stream().toList().getFirst().isDirected();
+        this.directed = edges.stream().toList().getFirst().isStrictlyDirected();
         this.edges = new HashSet<>();
         this.nodes = new HashSet<>();
         this.adjacencyList = new HashMap<>();
@@ -33,7 +33,7 @@ public class SimpleGraph<T> implements Graph<T>{
     }
 
     @Override
-    public boolean isDirected() {
+    public boolean isStrictlyDirected() {
         return directed;
     }
 

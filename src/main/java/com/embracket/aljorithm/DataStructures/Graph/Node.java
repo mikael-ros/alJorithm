@@ -14,11 +14,17 @@ public class Node<T> {
     public void setContent(T content) {
         this.content = content;
     }
-
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Node<?> other
-                && other.getContent().equals(content);
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        Node<T> node = (Node<T>) obj;
+        return Objects.equals(content, node.getContent());
         // A node with the same content is considered equal
     }
 

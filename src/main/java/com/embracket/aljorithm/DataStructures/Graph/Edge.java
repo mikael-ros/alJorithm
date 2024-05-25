@@ -4,7 +4,7 @@ import com.embracket.aljorithm.DataStructures.Util.Pair;
 
 import java.util.Objects;
 
-public class Edge<T> extends Pair<Node<T>> {
+public class Edge<T> extends Pair<Node<T>> implements AbstractEdge<T> {
     private final boolean directed;
 
     public Edge(Node<T> first, Node<T> second) {
@@ -41,10 +41,10 @@ public class Edge<T> extends Pair<Node<T>> {
     }
 
     public Node<T> otherEnd(Node<T> oneEnd){
-        return oneEnd.equals(from()) ? to() : from();
+        return other(oneEnd);
     }
 
-    public boolean isDirected() {
+    public boolean isStrictlyDirected() {
         return directed;
     }
 
@@ -61,10 +61,17 @@ public class Edge<T> extends Pair<Node<T>> {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Edge<?> other
-                && other.from().equals(from())
-                && other.to().equals(to())
-                && other.isDirected() == directed;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        Edge<T> edge = (Edge<T>) obj;
+        return      Objects.equals(from(), edge.from())
+                &&  Objects.equals(to(), edge.to())
+                &&  Objects.equals(directed, edge.isStrictlyDirected());
         // An edge with the same nodes and direction status is considered equal
     }
 }

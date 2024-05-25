@@ -6,7 +6,7 @@ import java.util.Set;
  * Any type of graph, could be implemented in any way, as long as it satisfies these methods
  * @param <T> The type of the nodes contained
  */
-public interface Graph<T> {
+public interface AbstractGraph<T> {
     /**
      * Should return the neighbors of a node
      * @param node The node queried
@@ -14,7 +14,7 @@ public interface Graph<T> {
      */
     Set<Node<T>> neighbors(Node<T> node);
 
-    boolean isDirected();
+    boolean isStrictlyDirected();
 
     String toString();
 
@@ -44,23 +44,23 @@ public interface Graph<T> {
 
     /**
      * Does an operation based on the remove parameter
-     * @param edge The edge to remove or add
+     * @param abstractEdge The edge to remove or add
      * @param remove Whether to remove or add (true => remove)
      * @return Whether it was successful/impactful
      */
-    boolean modifyGraph(Edge<T> edge, boolean remove);
+    boolean modifyGraph(Edge<T> abstractEdge, boolean remove);
 
     /**
      * Adds an edge, if it's not contained within
-     * @param edge The edge
+     * @param abstractEdge The edge
      * @return Whether it wasn't in the graph or if it was
      */
-    boolean addEdge(Edge<T> edge);
+    boolean addEdge(Edge<T> abstractEdge);
 
     /**
      * Removes an edge, if it's contained within
-     * @param edge The edge
+     * @param abstractEdge The edge
      * @return Whether it was in the graph or not
      */
-    boolean removeEdge(Edge<T> edge);
+    boolean removeEdge(Edge<T> abstractEdge);
 }

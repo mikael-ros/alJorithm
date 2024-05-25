@@ -33,8 +33,8 @@ public class SimpleGraphTests {
     Set<Node<Integer>> directedNode4Neighbors;
     Set<Edge<Integer>> directedNode4Adjacencies;
 
-    Graph<Integer> graph;
-    Graph<Integer> directedGraph;
+    AbstractGraph<Integer> graph;
+    AbstractGraph<Integer> directedGraph;
     Set<Edge<Integer>> edges;
     Set<Edge<Integer>> directedEdges;
     Map<Node<Integer>, Set<Edge<Integer>>> adjacencyList;
@@ -137,13 +137,13 @@ public class SimpleGraphTests {
     @Test
     @DisplayName("Undirected graph detects it is undirected")
     void isUndirectedUndirected(){
-        assertFalse(graph.isDirected());
+        assertFalse(graph.isStrictlyDirected());
     }
 
     @Test
     @DisplayName("Directed graph detects it is Directed")
     void isDirectedDirected(){
-        assertTrue(directedGraph.isDirected());
+        assertTrue(directedGraph.isStrictlyDirected());
     }
 
 
