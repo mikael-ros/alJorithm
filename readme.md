@@ -6,11 +6,12 @@ The correctness of any of the algorithms cannot be guaranteed due to insufficien
 ---
 
 ## Algorithms found inside
-- None yet :(
+- Dijkstras algorithm
 
 ## Data structures found inside
 - Node<T>
 - Edge<T>
+  - WeightedEdge<T>
 - Pair<T>
 - Path<T>
 - Simple Graph<T> based on adjacency list

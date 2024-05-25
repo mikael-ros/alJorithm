@@ -3,12 +3,15 @@ package com.embracket.aljorithm.DataStructures.Util;
 import java.util.Objects;
 
 public class Pair<T> {
+    private static int ID = 0;
+    private final int id;
     private final T first;
     private final T second;
 
     public Pair(T first, T second){
         this.first = first;
         this.second = second;
+        id = ID++;
     }
 
     public T fst(){
@@ -25,7 +28,11 @@ public class Pair<T> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(first,second);
+        return Objects.hash(first,second,id);
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

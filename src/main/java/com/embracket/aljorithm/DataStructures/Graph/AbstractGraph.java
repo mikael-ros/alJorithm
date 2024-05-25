@@ -43,6 +43,16 @@ public interface AbstractGraph<T> {
     Set<Node<T>> getNodes();
 
     /**
+     * @return The amount of nodes V in G
+     */
+    int V();
+
+    /**
+     * @return The amount of edges E in G
+     */
+    int E();
+
+    /**
      * Does an operation based on the remove parameter
      * @param abstractEdge The edge to remove or add
      * @param remove Whether to remove or add (true => remove)
@@ -63,4 +73,12 @@ public interface AbstractGraph<T> {
      * @return Whether it was in the graph or not
      */
     boolean removeEdge(Edge<T> abstractEdge);
+
+    /**
+     * Finds the corresponding edge with the nodes
+     * @param from The start node
+     * @param to   The end node
+     * @return The edge, if found, otherwise a dummy edge.
+     */
+    Edge<?> getEdge(Node<T> from, Node<T> to);
 }

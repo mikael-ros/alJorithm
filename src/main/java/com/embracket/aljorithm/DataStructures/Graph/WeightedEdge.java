@@ -7,7 +7,7 @@ import java.util.Objects;
  * @param <T> The type of node
  */
 public class WeightedEdge<T> extends Edge<T> implements AbstractEdge<T> {
-    private final int weight;
+    private final double weight;
     public WeightedEdge(Node<T> first, Node<T> second, int weight) {
         super(first, second);
         this.weight = weight;
@@ -28,7 +28,7 @@ public class WeightedEdge<T> extends Edge<T> implements AbstractEdge<T> {
         this.weight = weight;
     }
 
-    public int getWeight() { return weight; }
+    public double getWeight() { return weight; }
 
     @Override
     public String toString() {
@@ -55,6 +55,6 @@ public class WeightedEdge<T> extends Edge<T> implements AbstractEdge<T> {
                 &&  Objects.equals(to(), edge.to())
                 &&  Objects.equals(isStrictlyDirected(), edge.isStrictlyDirected())
                 &&  Objects.equals(weight, edge.getWeight());
-        // An edge with the same nodes and direction status is considered equal
+        // An edge with the same nodes, weight, and direction status is considered equal
     }
 }

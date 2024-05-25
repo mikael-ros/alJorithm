@@ -52,6 +52,32 @@ public class SimpleGraph<T> implements AbstractGraph<T> {
     }
 
     @Override
+    public Edge<?> getEdge(Node<T> from, Node<T> to){
+        Edge<?> result = new Edge<>(null,null); // A dummy edge
+        for (Edge<T> edge : edges){
+            boolean strictlyConforms = edge.from().equals(from) && edge.to().equals(to);
+            if (directed){
+                result = strictlyConforms ? edge : result;
+            } else {
+                result = strictlyConforms || edge.from().equals(to) && edge.to().equals(from) ? edge : result;
+            }
+            if (strictlyConforms)
+                break;
+        }
+        return result;
+    }
+
+    @Override
+    public int V(){
+        return nodes.size();
+    }
+
+    @Override
+    public int E(){
+        return edges.size();
+    }
+
+    @Override
     public boolean modifyGraph(Edge<T> edge, boolean remove) {
         Set<Edge<T>> fromAdjacencies = adjacencyList.getOrDefault(edge.from(), new HashSet<>());
         Set<Edge<T>> toAdjacencies = adjacencyList.getOrDefault(edge.to(), new HashSet<>());

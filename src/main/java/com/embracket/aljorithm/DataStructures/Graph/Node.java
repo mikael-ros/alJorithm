@@ -3,9 +3,14 @@ package com.embracket.aljorithm.DataStructures.Graph;
 import java.util.Objects;
 
 public class Node<T> {
+    private static int ID = 0;
+    private final int id;
     private T content;
 
-    public Node(T content){this.content = content;}
+    public Node(T content){
+        this.content = content;
+        id = ID++;
+    }
 
     public T getContent() {
         return content;
@@ -28,9 +33,13 @@ public class Node<T> {
         // A node with the same content is considered equal
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(content);
+        return Objects.hash(content,id);
     }
 
     @Override
