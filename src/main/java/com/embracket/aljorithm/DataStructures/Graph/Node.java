@@ -39,7 +39,7 @@ public class Node<T> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(content,id);
+        return Objects.hash(content);
     }
 
     @Override

@@ -54,7 +54,7 @@ public class SimpleGraph<T> implements AbstractGraph<T> {
     @Override
     public Edge<?> getEdge(Node<T> from, Node<T> to){
         Edge<?> result = new Edge<>(null,null); // A dummy edge
-        for (Edge<T> edge : edges){
+        for (Edge<T> edge : adjacencyList.get(from)){
             boolean strictlyConforms = edge.from().equals(from) && edge.to().equals(to);
             if (directed){
                 result = strictlyConforms ? edge : result;

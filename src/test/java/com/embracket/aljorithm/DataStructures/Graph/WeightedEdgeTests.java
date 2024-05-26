@@ -33,12 +33,12 @@ public class WeightedEdgeTests {
         WeightedEdge<String> shortHandEdge1 = new WeightedEdge(element, element2,2);
         assertEquals(node1, shortHandEdge1.from());
         assertEquals(node2, shortHandEdge1.to());
-        assertEquals(2, shortHandEdge1.getWeight());
+        assertEquals(2.0, shortHandEdge1.getWeight(),0);
 
         WeightedEdge<String> shortHandEdge2 = new WeightedEdge(element2, element,3, true);
         assertEquals(node2, shortHandEdge2.from());
         assertEquals(node1, shortHandEdge2.to());
-        assertEquals(3, shortHandEdge2.getWeight());
+        assertEquals(3.0, shortHandEdge2.getWeight(),0);
     }
 
     @Test
@@ -55,10 +55,10 @@ public class WeightedEdgeTests {
     }
 
     @Test
-    @DisplayName("Print looks like (content) <---> (content2) or similar")
+    @DisplayName("Print looks like (content) <---> (content2) [Weight = x.x] or similar")
     void toStringLayoutCorrect(){
-        assertEquals("(content) <---> (content2) [Weight = 2]", edge1.toString());
-        assertEquals("(content2) ---> (content) [Weight = 3]", edge2.toString());
+        assertEquals("(content) <---> (content2) [Weight = 2.0]", edge1.toString());
+        assertEquals("(content2) ---> (content) [Weight = 3.0]", edge2.toString());
     }
 
     @Test

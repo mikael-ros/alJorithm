@@ -10,7 +10,6 @@ public class Dijkstras<T> {
      * Based on the following psuedocode:
      *
      * procedure dijkstras(G,start)
-     * 	visited <- new set
      * 	queue <- new priority queue
      * 	start.distTo <- 0
      *
@@ -30,37 +29,35 @@ public class Dijkstras<T> {
      *
      * @param graph A graph with directed edges
      * @param start The start node
-     * @return      The paths found, if any (empty if not)
+     * @return      The costs found, as well as implicitly the predecessors, if any (empty if not)
      * @param <T>   The type of nodes
      */
-    public static <T> Map<Node<T>, Path<T>> dijkstras(SimpleGraph<T> graph, Node<T> start){
-        Map<Node<T>, Path<T>> preds = new HashMap<>();
+    public static <T> Set<DijkstrasNode<T>> dijkstras(SimpleGraph<T> graph, Node<T> start){
+        Map<Node<T>, DijkstrasNode<T>> wrappers = new HashMap<>();
+        Queue<DijkstrasNode<T>> queue = new PriorityQueue<>();          // queue <- new priority queue
 
-        Queue<Node<T>> queue = new PriorityQueue<>();                   // queue <- new priority queue
-
-        Map<Node<T>, Double> distances = new HashMap<>();
-        distances.put(start, 0.0);                                      // start.distTo <- 0
         for (Node<T> node : graph.getNodes()){                          // for node v in G do
-            if (!node.equals(start))                                    // if v != start then
-                distances.put(node, Double.MAX_VALUE);                  // v.distTo <- infinity
-            queue.add(node);                                            // add v to queue
+            DijkstrasNode<T> wrapper = new DijkstrasNode<>(node);       // v.distTo <- infinity (implicit)
+            if (node.equals(start))                                     // if v != start then
+                wrapper.setDistance(0);                                 // start.distTo <- 0
+            queue.add(wrapper);                                         // add v to queue
+            wrappers.put(node,wrapper);
         }
 
         while (!queue.isEmpty()){
-            Node<T> current = queue.poll();                             // take minimum from queue
-            for (Node<T> neighbor : graph.neighbors(current)){          // for each neighbor v of u in G do
-                WeightedEdge<T> uv = (WeightedEdge<T>) graph.getEdge(neighbor,current);
+            DijkstrasNode<T> current = queue.poll();                    // take minimum from queue
+            Node<T> item = current.getItem();
+            for (Node<T> neighbor : graph.neighbors(item)){             // for each neighbor v of u in G do
+                WeightedEdge<T> uv = (WeightedEdge<T>) graph.getEdge(neighbor,item);
                 // (Cast is safe as we know the edge to be present and weighted)
-                double candidate =                                      // candidate <- u.distTo + (u,v).weight
-                        distances.get(current)
-                        + uv.getWeight();
-                if (candidate < distances.get(neighbor)){
-                    distances.put(neighbor, candidate);                 // v.distTo = candidate
-                    Path<T> pred = preds.getOrDefault(neighbor, new Path<T>());
-                    pred.add(uv);                                       // v.pred = u
+                DijkstrasNode<T> nWrapper = wrappers.get(neighbor);
+                double candidate = current.distance() + uv.getWeight(); // candidate <- u.distTo + (u,v).weight
+                if (candidate < nWrapper.distance()){
+                    nWrapper.setDistance(candidate);                    // v.distTo = candidate
+                    nWrapper.setPred(item);                             // v.pred = u
                 }
             }
         }
-        return preds;                                                   // end
+        return new HashSet<>(wrappers.values());                        // end
     }
 }

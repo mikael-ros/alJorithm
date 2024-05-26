@@ -33,8 +33,8 @@ public class SimpleGraphTests {
     Set<Node<Integer>> directedNode4Neighbors;
     Set<Edge<Integer>> directedNode4Adjacencies;
 
-    AbstractGraph<Integer> graph;
-    AbstractGraph<Integer> directedGraph;
+    SimpleGraph<Integer> graph;
+    SimpleGraph<Integer> directedGraph;
     Set<Edge<Integer>> edges;
     Set<Edge<Integer>> directedEdges;
     Map<Node<Integer>, Set<Edge<Integer>>> adjacencyList;
@@ -198,7 +198,7 @@ public class SimpleGraphTests {
     @Test
     @DisplayName("Edge is added correctly to directed graph")
     void addEdgeToDirectedGraph(){
-        Edge<Integer> edge = new Edge(3,2);
+        Edge<Integer> edge = new Edge(3,2,true);
         directedEdges.add(edge);
         directedNode3Adjacencies.add(edge);
         directedNode3Neighbors.add(node2);
